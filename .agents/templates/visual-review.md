@@ -3,7 +3,7 @@
 - Screen ID, route, and implementation revision/working-tree state:
 - Design source revision (or `unavailable`), extraction date, and contract path:
 - Runner, browser, environment, and fixture/state setup:
-- Budget: 3 rounds by default; maximum 4.
+- Assigned review budget:
 - Rounds consumed and fourth-round reason, if applicable:
 - Local round allowance and reserved integration round:
 - Status: pass / incomplete / blocked
@@ -14,7 +14,7 @@
 | --- | --- | --- | --- | --- |
 | | | | | |
 
-Use reconstructable code snapshots and package manifests as defined in repository-root `.agents/workflows/visual-validation.md`. Each evidence row refers to one of these rounds.
+Use snapshots and manifests defined in repository-root `.agents/workflows/visual-validation.md`. Each evidence row refers to one of these rounds.
 
 ## Evidence
 

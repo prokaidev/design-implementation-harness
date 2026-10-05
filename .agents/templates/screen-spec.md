@@ -45,4 +45,4 @@ Specify behavior required by the task; do not invent backend or API requirements
 - Validation route/setup and acceptance criteria:
 - Review budget, rounds already consumed, local allowance, and reserved integration round:
 
-Mark ready only with a completed contract, usable local references/assets, acceptance assertions, and no blocking design or required-behavior gaps.
+Readiness criteria: repository-root `.agents/skills/design-extractor/SKILL.md`.

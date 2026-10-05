@@ -21,15 +21,15 @@ Ranges must cover the supported widths without gaps or ambiguous boundaries. Des
 
 ## Validation matrix
 
+Build the matrix using repository-root `.agents/rules/responsive-design.md`.
+
 - Reference viewports and states:
 - Supported range limits and wide-screen check if the upper range is unbounded:
-- Intermediate widths: **1200, 1024, 900, 600, 480 CSS px** within the supported range; excluded sizes and reasons:
-- Breakpoint boundary checks: each transition at **b−1, b, b+1 CSS px** within the supported range:
+- Intermediate widths and breakpoint boundary checks:
+- Excluded sizes and reasons:
 - Heights, scale factor, and capture bounds:
 - Assertions without references: container behavior, order, visibility, wrapping, no unintended overflow/overlap/clipping, usable controls.
 - Content stress cases and required interactions:
-
-Deduplicate sizes according to repository-root `.agents/rules/responsive-design.md`. Resolve any conflict between in-scope references and the supported range before readiness.
 
 ## Decisions
 

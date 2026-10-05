@@ -19,5 +19,3 @@ screens/<screen-id>/
   validation/round-<n>/
   visual-review.md
 ```
-
-The indexer maintains screen mappings; the extractor refreshes changed packages before coding resumes.
