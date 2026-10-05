@@ -1,12 +1,14 @@
 # Figma-to-Code Harness
 
-A reusable workflow for AI agents implementing Figma designs within a project's architecture and conventions.
+A reusable agent workflow for implementing and visually validating responsive web interfaces from Figma.
 
 ```text
 Project analysis → Design indexing → Design extraction → Coding → Visual validation
 ```
 
 The indexer maps screens and variants. The extractor prepares local packages with visual specifications, references, assets, and Responsive Contracts. Coding workers use those packages without accessing Figma.
+
+These are roles: one agent can run them sequentially, or a coordinator can delegate independent screens. The target project supplies application requirements, including data and API behavior where applicable.
 
 ## Use
 
@@ -22,13 +24,15 @@ The indexer maps screens and variants. The extractor prepares local packages wit
 | [screen-implementer](.agents/skills/screen-implementer/SKILL.md) | Responsive implementation and visual review |
 
 ```text
-Use project-analyzer to analyze this repository.
+Use project-analyzer to analyze the target codebase.
 Use design-indexer to index <Figma source>.
 Use design-extractor to extract <screen IDs> from the design index.
 Use screen-implementer to implement .agents/artifacts/screens/<screen-id>/.
 ```
 
-Skills reference sibling files, so copy the whole `.agents/` directory. If discovery is unavailable, point the agent to the linked `SKILL.md`.
+For a new application: `Use project-analyzer to initialize the application from .agents/context/ and then analyze it.`
+
+Skills depend on other files under `.agents/`, so copy the entire directory. If discovery is unavailable, point the agent to the linked `SKILL.md`.
 
 ## Structure
 
@@ -46,8 +50,8 @@ Generated output goes to `.agents/artifacts/`; see [artifact layout](.agents/con
 
 ## Validation and parallel work
 
-One task includes desktop, tablet, and mobile. The [Responsive Contract](.agents/templates/responsive-contract.md) defines behavior between references. Check reference sizes, **1200, 1024, 900, 600, 480 CSS px**, and breakpoint boundaries.
+One task includes desktop, tablet, and mobile. The [Responsive Contract](.agents/templates/responsive-contract.md) defines behavior between references. The [validation matrix](.agents/rules/responsive-design.md) includes reference sizes, supported range limits, intermediate widths, and each breakpoint at −1, exactly, and +1 CSS px.
 
-Playwright captures the implementation; the agent compares it with local references. Chrome DevTools MCP or the Codex browser helps diagnose differences. Review is limited to **3 rounds, at most 4**; unresolved differences remain in the report.
+Playwright captures the implementation; the agent compares it with local references. Chrome DevTools MCP or the Codex browser helps diagnose differences. The default budget is **3 rounds, including the initial capture**. A fourth is allowed for a diagnosed, localized issue. Parallel work reserves at least one of the three rounds for integration; see [visual validation](.agents/workflows/visual-validation.md).
 
 Parallel workers own separate screens, with one owner for shared code. Figma, Playwright, and diagnostic tools are supplied by the target environment.

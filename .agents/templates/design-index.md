@@ -1,12 +1,12 @@
 # Design index
 
 - Figma file/page scope:
-- Source revision if available and indexed date:
+- Source revision (or `unavailable`) and indexed date:
 - Project profile and code index paths:
 
 | Screen ID | Route or unknown | Variant / state | Source node / link | Width × height | Local package | Status / gaps |
 | --- | --- | --- | --- | --- | --- | --- |
-| | | Desktop / tablet / mobile | | | | Indexed / extracting / ready / stale |
+| | | Desktop / tablet / mobile | | | | indexed / extracting / ready / stale |
 
 - Shared design components and code candidates:
 - Navigation relationships:

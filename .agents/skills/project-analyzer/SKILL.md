@@ -1,6 +1,6 @@
 ---
 name: project-analyzer
-description: Produce a project profile and code index before implementing designs in a target repository.
+description: Analyze a target codebase before implementing designs, or initialize a new application from supplied project context. Produce a project profile and code index.
 ---
 
 # Project analyzer

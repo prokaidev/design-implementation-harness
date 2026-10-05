@@ -2,7 +2,7 @@
 
 - Screen ID and specification path:
 - Status: draft / ready / stale
-- Source revision/date and project breakpoint source:
+- Source revision (or `unavailable`), extraction date, and project breakpoint source:
 - Supported viewport range:
 
 ## Behavior by range
@@ -22,11 +22,14 @@ Ranges must cover the supported widths without gaps or ambiguous boundaries. Des
 ## Validation matrix
 
 - Reference viewports and states:
-- Intermediate widths: **1200, 1024, 900, 600, 480 CSS px** (deduplicate against references).
-- Breakpoint boundary checks: each transition width −1 and +1 CSS px.
+- Supported range limits and wide-screen check if the upper range is unbounded:
+- Intermediate widths: **1200, 1024, 900, 600, 480 CSS px** within the supported range; excluded sizes and reasons:
+- Breakpoint boundary checks: each transition at **b−1, b, b+1 CSS px** within the supported range:
 - Heights, scale factor, and capture bounds:
 - Assertions without references: container behavior, order, visibility, wrapping, no unintended overflow/overlap/clipping, usable controls.
 - Content stress cases and required interactions:
+
+Deduplicate sizes according to repository-root `.agents/rules/responsive-design.md`. Resolve any conflict between in-scope references and the supported range before readiness.
 
 ## Decisions
 

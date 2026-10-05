@@ -7,4 +7,4 @@ description: Extract indexed Figma screens into local specifications, screenshot
 
 Follow [extract-design](../../workflows/extract-design.md), the [Figma boundary](../../rules/figma.md), and [responsive rules](../../rules/responsive-design.md).
 
-Input: selected design-index entries, project profile, and code index. Output: one ready package per screen containing all responsive variants. Route missing screen/node mappings to [design-indexer](../design-indexer/SKILL.md); handle missing properties or assets here.
+Input: selected design-index entries, project profile, and code index. Output: one package per screen containing all responsive variants, marked ready or draft/stale with explicit blockers. Route missing screen/node mappings to [design-indexer](../design-indexer/SKILL.md); handle missing properties or assets here. Route unresolved product/API behavior to the coordinator or user.

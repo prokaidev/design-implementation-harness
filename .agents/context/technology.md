@@ -10,3 +10,5 @@ Use manifests, lockfiles, and configuration as evidence.
 - Available Figma tool for indexer/extractor:
 - Available Playwright capture runner:
 - Available diagnostic browser: Chrome DevTools MCP / Codex browser / other:
+
+Record capability verification results and blockers: application startup/capture during analysis, Figma read/export during indexing/extraction.
