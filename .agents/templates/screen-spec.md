@@ -1,6 +1,7 @@
 # Screen specification
 
 - Screen ID, route, and purpose:
+- Selected implementation set ID and design-index selection/decision reference:
 - Source revision (or `unavailable`) and extraction date:
 - Status: draft / ready / stale
 - Project profile, code index, and Responsive Contract paths:
