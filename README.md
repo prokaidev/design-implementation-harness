@@ -40,13 +40,15 @@ Skills depend on other files under `.agents/`, so copy the entire directory. If 
 AGENTS.md                # Entry points and coordination
 .agents/
 ├── context/             # Target project inputs
-├── skills/              # Four task entry points
+├── skills/              # Four skills with their stage procedures
 ├── rules/               # Figma access and responsive requirements
-├── workflows/           # Stage-specific procedures
+├── workflows/           # Shared visual validation procedure
 └── templates/           # Formats for generated artifacts
 ```
 
 Generated output goes to `.agents/artifacts/`; see [artifact layout](.agents/context/design.md).
+
+Each skill contains its inputs, outputs, and stage procedure. Visual validation remains shared between screen implementation and the coordinator's integration review. Rules, templates, and project context stay separate for reuse.
 
 ## Validation and parallel work
 
