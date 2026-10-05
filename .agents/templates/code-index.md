@@ -10,5 +10,3 @@
 - Shared files and assigned owners:
 - Missing primitives or unresolved mappings:
 - Entries refreshed after implementation:
-
-Use exact paths and symbols. Confirm candidates in current code before reuse; update only affected entries when code changes.

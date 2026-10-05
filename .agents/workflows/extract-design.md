@@ -1,13 +1,11 @@
 # Extract design
 
-**Input:** indexed screen, all responsive variants/states, project profile, and code index.
-**Output:** one local screen package with specification, Responsive Contract, references, and assets.
+**Input:** selected design-index entries, project profile, and code index.
+**Output:** one local package per screen.
 
-1. Read all available desktop/tablet/mobile variants together. Capture each reference at its original dimensions; record state, content, source node, and provenance.
-2. Extract layout/constraints, fixed/fluid sizing, alignment, spacing, typography including font weights and line heights, colors, borders, radii, and effects.
-3. Export required assets; record local paths, format, dimensions, font availability, and usage. Identify existing project equivalents.
-4. Extract component variants, interaction evidence, and applicable loading/empty/error/disabled/selected states. Separate design facts from assumptions.
-5. Fill [screen-spec](../templates/screen-spec.md) and [responsive-contract](../templates/responsive-contract.md). Describe transitions across ranges, including intermediate widths; use project breakpoints where suitable.
-6. Verify all package paths resolve, screenshots/assets are usable, sources are consistent, and blocking gaps are resolved. Mark readiness in the design index.
+1. Read all indexed responsive variants and states together. Save references at original dimensions with source node, state, revision/date, and capture bounds.
+2. Extract layout constraints, fixed/fluid sizing, spacing, typography (font, size, weight, line height), colors, borders, and effects. Export assets and record font availability and existing code equivalents.
+3. Fill [screen-spec](../templates/screen-spec.md), including component states and interaction evidence, and [responsive-contract](../templates/responsive-contract.md), separating observed values from inferred behavior.
+4. Check package completeness and mark readiness. Return screen/node mapping gaps to the indexer; resolve detailed design gaps here.
 
-**Ready:** a coding worker can implement and validate this screen without Figma access. Missing references remain explicit; never fabricate a missing design variant or call it visually verified.
+Ready means the package supports implementation without Figma access: usable local references/assets, a completed contract, and no blocking gaps. On recovery requests, refresh only affected artifacts.

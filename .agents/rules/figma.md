@@ -1,9 +1,6 @@
-# Figma ingestion boundary
+# Figma boundary
 
-- Only ingestion reads Figma. It owns indexing, extraction, and missing-context recovery.
-- Group responsive variants and states under one stable screen ID; record absent variants explicitly.
-- Extract layout constraints, spacing, typography, colors, assets, component states, and responsive evidence.
-- Save local screenshots and assets with source nodes, dimensions, and extraction date/version when available.
-- Distinguish observed values from inferred behavior. Frame widths alone do not establish CSS breakpoints.
-- Coding workers never call Figma, including for missing images or metadata. Send ingestion the screen ID, missing detail, and affected decision; continue only independent work.
-- Refresh affected packages when sources change. Do not silently mix references from different revisions.
+- The indexer owns screen IDs, variant groups, source nodes, and changed scope. The extractor owns detailed properties, references, assets, and package readiness.
+- Coding workers never access Figma. Return missing or stale package details to the extractor; it routes mapping gaps to the indexer.
+- Keep source nodes, dimensions, revision/date, and missing variants in local artifacts. Re-extract affected packages after source changes.
+- In parallel work, return design-index updates to its coordinator rather than editing the shared index concurrently.

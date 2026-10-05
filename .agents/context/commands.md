@@ -1,6 +1,6 @@
 # Commands
 
-Record exact commands, working directories, and required environment variable names. Do not record secrets or invent scripts.
+Record commands, working directories, and required environment variable names.
 
 | Action | Command | Working directory | Verified / unavailable |
 | --- | --- | --- | --- |

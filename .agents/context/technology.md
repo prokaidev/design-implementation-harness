@@ -7,8 +7,6 @@ Use manifests, lockfiles, and configuration as evidence.
 - Routing and state/data handling:
 - Styling and token sources:
 - Test and browser tooling:
-- Available Figma ingestion tool:
+- Available Figma tool for indexer/extractor:
 - Available Playwright capture runner:
 - Available diagnostic browser: Chrome DevTools MCP / Codex browser / other:
-
-Record unavailable tools explicitly; do not assume an integration is installed.

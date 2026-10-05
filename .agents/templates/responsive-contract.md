@@ -31,7 +31,7 @@ Ranges must cover the supported widths without gaps or ambiguous boundaries. Des
 ## Decisions
 
 - Missing variants and bounded assumptions:
-- Blocking questions for ingestion:
+- Blocking questions for the extractor:
 - Readiness evidence:
 
-Complete before coding. Mark ready when behavior is implementable across ranges and no blocking questions remain; human sign-off is not a routine requirement.
+Ready: behavior covers all ranges and blocking questions are resolved.

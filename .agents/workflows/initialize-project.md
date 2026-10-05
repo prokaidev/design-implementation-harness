@@ -1,10 +1,6 @@
 # Initialize project
 
-**Input:** product, architecture, technology, constraints, and design scope from `../context/`.
-**Output:** runnable project, verified commands, project profile, and code index.
+**Input:** product, architecture, technology, and constraints from `../context/`.
+**Output:** runnable project and commands.
 
-1. Confirm that an application does not already exist. If it does, use [analyze-project](analyze-project.md).
-2. Resolve missing decisions that determine the stack or architecture. Do not apply a harness-specific starter.
-3. Initialize using the chosen project's conventions and tooling; preserve existing files.
-4. Verify startup and applicable initial checks; record commands and environment requirements.
-5. Run [analyze-project](analyze-project.md) on the result before design implementation.
+Initialize using the supplied stack and architecture, then run [project analysis](analyze-project.md). Resolve missing stack decisions first; the harness provides no application starter. Existing applications go directly to analysis.

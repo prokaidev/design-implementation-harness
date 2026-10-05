@@ -25,7 +25,7 @@
 - Semantics, keyboard behavior, and focus requirements:
 - Missing responsive variants or state references:
 - Observed facts vs inferred decisions:
-- Blocking gaps and ingestion follow-up:
+- Blocking gaps and extractor follow-up:
 
 ## Worker handoff
 

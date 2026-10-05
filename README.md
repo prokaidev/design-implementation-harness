@@ -1,58 +1,53 @@
 # Figma-to-Code Harness
 
-A reusable workflow for AI agents implementing Figma designs in new or existing projects. It adapts to the project's architecture, stack, and conventions.
+A reusable workflow for AI agents implementing Figma designs within a project's architecture and conventions.
 
 ```text
-Project analysis → Figma ingestion → Responsive Contract → Coding → Visual validation
+Project analysis → Design indexing → Design extraction → Coding → Visual validation
 ```
 
-Ingestion produces local screen packages. Coding workers use those packages without accessing Figma. Each screen task includes desktop, tablet, and mobile together.
+The indexer maps screens and variants. The extractor prepares local packages with visual specifications, references, assets, and Responsive Contracts. Coding workers use those packages without accessing Figma.
 
 ## Use
 
-1. Copy `.agents/` into the target repository. Merge this harness's [AGENTS.md](AGENTS.md) instructions into existing agent instructions without overwriting project rules.
-2. Fill `.agents/context/` with known project inputs; let project analysis record discovered facts. Keep unknowns explicit.
-3. Use the skills below in order. Provide the design scope for ingestion and a screen package path for implementation.
+1. Copy `.agents/` into the target repository and merge [AGENTS.md](AGENTS.md) with its existing instructions.
+2. Fill `.agents/context/` with known project inputs; analysis supplies codebase facts.
+3. Run the skills in order, selecting the screens to extract and implement.
 
-| Skill | Outcome |
+| Skill | Output |
 | --- | --- |
-| [harness-project](.agents/skills/harness-project/SKILL.md) | Project profile, code index, and verified commands |
-| [harness-ingest](.agents/skills/harness-ingest/SKILL.md) | Design index, local references/assets, screen specs, and Responsive Contracts |
-| [harness-screen](.agents/skills/harness-screen/SKILL.md) | Responsive implementation and visual review |
-
-Example task prompts:
+| [project-analyzer](.agents/skills/project-analyzer/SKILL.md) | Project profile and code index |
+| [design-indexer](.agents/skills/design-indexer/SKILL.md) | Screens, responsive variants, states, and source nodes |
+| [design-extractor](.agents/skills/design-extractor/SKILL.md) | Screen packages and Responsive Contracts |
+| [screen-implementer](.agents/skills/screen-implementer/SKILL.md) | Responsive implementation and visual review |
 
 ```text
-Use harness-project to analyze this repository.
-Use harness-ingest to prepare <screens> from <Figma source>.
-Use harness-screen to implement .agents/artifacts/screens/<screen-id>/.
+Use project-analyzer to analyze this repository.
+Use design-indexer to index <Figma source>.
+Use design-extractor to extract <screen IDs> from the design index.
+Use screen-implementer to implement .agents/artifacts/screens/<screen-id>/.
 ```
 
-If skills are not discovered by the agent, point it to the linked `SKILL.md`. These skills reference sibling harness files, so copy the whole `.agents/` directory.
+Skills reference sibling files, so copy the whole `.agents/` directory. If discovery is unavailable, point the agent to the linked `SKILL.md`.
 
 ## Structure
 
 ```text
-AGENTS.md                # Entry points, shared requirements, and coordination
+AGENTS.md                # Entry points and coordination
 .agents/
-├── context/             # Project inputs: product, architecture, stack, design, constraints, commands
-├── skills/              # Three short task entry points
-├── rules/               # Adaptation, reuse, Figma, responsive design, code and visual quality
-├── workflows/           # Initialize, analyze, index, extract, implement, validate
-└── templates/           # Project profile, code/design indexes, screen spec, contract, visual review
+├── context/             # Target project inputs
+├── skills/              # Four task entry points
+├── rules/               # Figma access and responsive requirements
+├── workflows/           # Stage-specific procedures
+└── templates/           # Formats for generated artifacts
 ```
 
-Generated artifacts go to `.agents/artifacts/` by default. Their layout and configurable location are in [design context](.agents/context/design.md). Context files are forms for the target project; templates are formats for generated results.
+Generated output goes to `.agents/artifacts/`; see [artifact layout](.agents/context/design.md).
 
-## Working rules
+## Validation and parallel work
 
-- Inspect and index the codebase; reuse existing components and tokens.
-- Extract layout, spacing, typography, assets, component states, and responsive evidence before coding.
-- Complete a [Responsive Contract](.agents/templates/responsive-contract.md) covering behavior between reference sizes. Frame widths are not automatically breakpoints.
-- Check reference viewports plus **1200, 1024, 900, 600, 480 CSS px**, and breakpoint boundaries.
-- Capture with Playwright; the agent compares against local design references. At widths without references, check contract behavior.
-- Diagnose layout problems with Chrome DevTools MCP or the Codex browser when available; otherwise use Playwright inspection.
-- Limit visual review to **3 rounds by default, 4 maximum**. Report unresolved differences instead of claiming completion.
-- Parallelize by independent screen, with one owner for shared code. Each worker handles all responsive variants and never queries Figma.
+One task includes desktop, tablet, and mobile. The [Responsive Contract](.agents/templates/responsive-contract.md) defines behavior between references. Check reference sizes, **1200, 1024, 900, 600, 480 CSS px**, and breakpoint boundaries.
 
-This repository provides instructions and templates. Figma access, Playwright, diagnostic browser tools, and application commands must be available in the target environment; they are not installed by the harness.
+Playwright captures the implementation; the agent compares it with local references. Chrome DevTools MCP or the Codex browser helps diagnose differences. Review is limited to **3 rounds, at most 4**; unresolved differences remain in the report.
+
+Parallel workers own separate screens, with one owner for shared code. Figma, Playwright, and diagnostic tools are supplied by the target environment.

@@ -23,5 +23,3 @@
 - Harmless rendering differences and justification:
 - Remaining differences, missing checks, or blockers:
 - Next action and owner:
-
-Attach evidence for all required sizes and states. Budget exhaustion never implies a pass.

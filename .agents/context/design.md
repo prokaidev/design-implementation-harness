@@ -20,4 +20,4 @@ screens/<screen-id>/
   visual-review.md
 ```
 
-Keep original reference dimensions and provenance. Screen IDs remain stable across responsive variants. Ingestion refreshes changed design artifacts before coding resumes.
+The indexer maintains screen mappings; the extractor refreshes changed packages before coding resumes.
