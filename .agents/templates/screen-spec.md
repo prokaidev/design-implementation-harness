@@ -21,6 +21,14 @@
 ## Assets and content
 
 - Assets/fonts: local path, source, dimensions/format, role, and availability:
+- Asset manifest path (or inline records): separate references, originals, and selected production roles; include source revision, SHA-256, export settings/derivations, and relevant alternative candidates with selection rationale:
+
+| Production role / responsive source | Selected path / source node or original | Format / pixel dimensions or viewBox | Maximum CSS paint size / fit / crop | Target DPR / required pixels / effective density | Density result / artwork inspection evidence |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | |
+
+Apply repository-root `.agents/rules/assets.md`. Record detail, crop, alpha, and effects checks. Missing or failed source-quality/density checks prevent package `ready`; browser resource and sharpness checks belong to implementation acceptance.
+
 - Existing components/tokens to reuse, material mismatches, and decisions:
 - Exact visible text and content/fixture sources:
 - Missing responsive variants or state references:
@@ -43,6 +51,8 @@ Specify behavior required by the task; do not invent backend or API requirements
 
 - Coordinator (or single agent), owned files, and shared dependencies/owners:
 - Validation route/setup and acceptance criteria:
-- Review budget, rounds already consumed, local allowance, and reserved integration round:
+- Local planning budget (default 6), consumed rounds, extensions, and remaining allowance:
+- Separate integration planning budget (default 2 when required), consumed rounds, extensions, and remaining allowance:
+- Integration required / not applicable and reason; handoff is `local-pass` after local acceptance when integration is pending:
 
 Readiness criteria: repository-root `.agents/skills/design-extractor/SKILL.md`.

@@ -28,6 +28,9 @@ Build the matrix using repository-root `.agents/rules/responsive-design.md`.
 - Intermediate widths and breakpoint boundary checks:
 - Excluded sizes and reasons:
 - Heights, scale factor, and capture bounds:
+- Target asset DPR (at least 2), maximum CSS paint sizes by source/range, and fit/crop behavior:
+- DPR 2 (or higher required DPR) viewports/states covering each production raster role and distinct responsive composition/source; vector rendering checks or justified raster not-applicable evidence:
+- Resource-selection and density assertions; device-pixel captures and sharpness checks:
 - Assertions without references: container behavior, order, visibility, wrapping, no unintended overflow/overlap/clipping, usable controls.
 - Content stress cases and required interactions:
 

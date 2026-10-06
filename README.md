@@ -8,6 +8,8 @@ Project analysis → Design indexing → Design extraction → Coding → Visual
 
 The extractor prepares local screen packages for coding without further Figma access. The target project supplies functional requirements and data/API behavior.
 
+[Asset quality rules](.agents/rules/assets.md) require justified production-source selection and resolution sufficient for CSS paint size × target DPR (at least 2). Implementation acceptance additionally verifies the actual browser resource and sharpness in device-pixel captures at DPR 2; DPR 1 layout checks alone are insufficient.
+
 ## Use
 
 1. Copy `.agents/` into the target repository and merge [AGENTS.md](AGENTS.md) with its existing instructions.
@@ -49,5 +51,7 @@ Generated output goes to `.agents/artifacts/`; see [artifact layout](.agents/con
 ## Validation and parallel work
 
 Each screen task covers desktop, tablet, and mobile using a [Responsive Contract](.agents/templates/responsive-contract.md) and [validation matrix](.agents/rules/responsive-design.md). [Visual validation](.agents/workflows/visual-validation.md) defines capture, comparison, and review budgets.
+
+The default planning budgets are 6 local rounds and 2 separate integration rounds per affected screen when integration is required. Finish early when acceptance passes; extend a phase by 2 rounds for diagnosed, actionable remaining issues. Two rounds without meaningful progress require a change in diagnosis. Budget exhaustion alone does not end the task. Parallel workers hand off as `local-pass`; the coordinator verifies integration before overall `pass`.
 
 One agent can run the workflow sequentially or delegate independent screens under the [coordination rules](AGENTS.md). The target environment supplies Figma access, Playwright, and diagnostic tools.
