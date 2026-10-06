@@ -3,6 +3,7 @@
 Filled example: [example review](../examples/screens/example/visual-review.md).
 
 - Screen ID, route, and implementation revision/working-tree state:
+- Original target repository, implementation worktree path, Git branch, and base commit:
 - Design source revision (or `unavailable`), extraction date, and contract path:
 - Runner, browser, environment, and fixture/state setup:
 - Local: base 6, consumed rounds, extensions used (max 2), ceiling 10:
