@@ -17,17 +17,18 @@ One agent may perform all roles sequentially; delegated work has an explicitly a
 
 - Only the indexer and extractor access Figma; follow the [ownership and recovery rules](.agents/rules/figma.md).
 - One task covers a screen's desktop, tablet, and mobile variants. A completed Responsive Contract is required before coding.
-- Follow [asset quality rules](.agents/rules/assets.md): distinguish references from production assets, verify source resolution against CSS paint size × target DPR (at least 2), and require browser density/sharpness evidence before acceptance.
-- Follow the [responsive validation matrix](.agents/rules/responsive-design.md) and [visual validation workflow](.agents/workflows/visual-validation.md), including its separate phase budgets, progress checks, and extension rules.
+- Follow the [asset quality rules](.agents/rules/assets.md) (production assets, density, fonts) and the [Figma-to-code rules](.agents/rules/figma-to-code.md).
+- Follow the [responsive validation matrix](.agents/rules/responsive-design.md) and the [visual validation workflow](.agents/workflows/visual-validation.md): it alone defines round budgets and ceilings, severity, and review statuses.
+- Use the [tools](.agents/tools/README.md) for capture, asset density, tiles, and round manifests; attach their output to reviews.
 
 ## Parallel work
 
-Dispatch independent screens after their packages are ready. Give each worker owned files, shared dependencies, and a local planning budget of 6 rounds by default. Budget exhaustion alone must not stop implementation; follow the workflow's diagnosis and 2-round extension rules.
+Dispatch independent screens after their packages are ready. Give each worker owned files, shared dependencies, and the local budget from the [workflow](.agents/workflows/visual-validation.md). A worker reaching its ceiling reports `incomplete` with the escalation record to the coordinator.
 
-Assign one owner to shared components, tokens, routes, and global styles. Workers hand off as `local-pass` after local acceptance. The coordinator merges index updates and rechecks affected screens after integration, using a separate planning budget of 2 rounds per screen with the same extension rules. Only successful integration permits overall `pass` in parallel work.
+Assign one owner to shared components, tokens, routes, and global styles. Workers hand off as `local-pass` after local acceptance. The coordinator merges index updates and rechecks affected screens after integration under the workflow's integration budget. Only successful integration permits overall `pass` in parallel work.
 
 ## Artifacts
 
-Inputs: `.agents/context/`. Formats: `.agents/templates/`. Generated output: `.agents/artifacts/`, configurable in [design context](.agents/context/design.md).
+Inputs: `.agents/context/` (user-owned; skills do not write to it). Formats: `.agents/templates/`. Generated output: `.agents/artifacts/`; layout, version-control rules, and the status table are in the [artifacts rule](.agents/rules/artifacts.md).
 
 Keep artifacts concise and update them when their sources change. Record provenance and unresolved gaps using the templates; visual validation defines per-round evidence requirements.

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo screen</title>
+<style>
+  :root { --bg:#f6f7fb; --ink:#161a2b; --brand:#3b5bdb; --gap:24px; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/24px system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:#fff; }
+  header nav { display:flex; gap:var(--gap); }
+  main { max-width:1200px; margin:0 auto; padding:0 24px; }
+  [data-section=hero] { display:grid; grid-template-columns:1fr 560px; gap:48px; align-items:center; padding:64px 0; }
+  [data-section=hero] h1 { margin:0 0 16px; font-size:48px; line-height:56px; overflow-wrap:anywhere; }
+  img.hero { display:block; width:100%; max-width:560px; height:340px; object-fit:cover; border-radius:16px; }
+  [data-section=cards] { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); padding-bottom:64px; }
+  .card { background:#fff; border-radius:12px; padding:16px; }
+  .card img { display:block; width:100%; max-width:300px; height:200px; object-fit:cover; border-radius:8px; }
+  .card h2 { margin:16px 0 4px; font-size:20px; line-height:28px; }
+  button { font:inherit; padding:8px 16px; border:0; border-radius:8px; background:var(--brand); color:#fff; cursor:pointer; }
+  @media (max-width: 1023px) { [data-section=hero] { grid-template-columns:1fr; padding:40px 0; } [data-section=cards] { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width: 599px) {
+    header nav { display:none; }
+    [data-section=hero] h1 { font-size:32px; line-height:40px; }
+    img.hero { height:220px; }
+    [data-section=cards] { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<header><strong>Demo</strong><nav><a href="#">Docs</a><a href="#">Pricing</a><a href="#">Contact</a></nav></header>
+<main>
+  <section data-section="hero">
+    <div><h1>Build responsive screens from design</h1><p>One screen, three variants, checked against the contract.</p><button id="cta">Get started</button></div>
+    <img class="hero" src="assets/hero.png" alt="Abstract gradient" width="560" height="340">
+  </section>
+  <section data-section="cards">
+    <article class="card"><img class="thumb" src="assets/thumb-2x.png" alt=""><h2>First</h2><p>Short text.</p></article>
+    <article class="card"><img src="assets/thumb-2x.png" alt=""><h2>Second</h2><p>A somewhat longer description of the second card.</p></article>
+    <article class="card"><img src="assets/thumb-2x.png" alt=""><h2>Third</h2><p>Text.</p></article>
+  </section>
+</main>
+</body>
+</html>

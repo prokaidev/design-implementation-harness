@@ -8,7 +8,7 @@ description: Map a Figma file into a local index of screens, responsive variants
 **Input:** Figma scope, project profile, and code index.
 **Output:** [design index](../../templates/design-index.md) with screen IDs, variant groups, node references, and extraction targets.
 
-Follow the [Figma boundary](../../rules/figma.md).
+Follow the [Figma boundary](../../rules/figma.md). Statuses: [status table](../../rules/artifacts.md).
 
 1. Verify read access to the requested Figma scope, then inspect relevant pages and top-level frames. Record access failures as blockers. Group desktop/tablet/mobile variants and states under stable screen IDs.
 2. Record node links, dimensions, shared component references, navigation relationships, and known route/code mappings.

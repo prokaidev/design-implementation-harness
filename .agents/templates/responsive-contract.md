@@ -1,7 +1,9 @@
 # Responsive Contract
 
+Filled example: [example contract](../examples/screens/example/responsive-contract.md).
+
 - Screen ID and specification path:
-- Status: draft / ready / stale
+- Status: see [status table](../rules/artifacts.md)
 - Source revision (or `unavailable`), extraction date, and project breakpoint source:
 - Supported viewport range:
 
@@ -21,7 +23,22 @@ Ranges must cover the supported widths without gaps or ambiguous boundaries. Des
 
 ## Validation matrix
 
-Build the matrix using repository-root `.agents/rules/responsive-design.md`.
+Build the matrix using repository-root `.agents/rules/responsive-design.md`. The JSON block is read by `capture.mjs`; keep it equal to the text below.
+
+```json matrix
+{
+  "route": "/",
+  "widths": [],
+  "height": 900,
+  "states": [{ "name": "default" }],
+  "themes": ["light"],
+  "dpr": [1],
+  "sections": [{ "name": "hero", "selector": "[data-section=hero]" }],
+  "assetChecks": [{ "role": "hero-image", "selector": "img.hero", "width": 1440, "dpr": 2 }]
+}
+```
+
+`states` may carry `actions` (`click`/`fill`/`press` with a selector) to reach a state; `themes` set `prefers-color-scheme`. Layout widths use DPR 1; `assetChecks` run once per role at the target DPR.
 
 - Reference viewports and states:
 - Supported range limits and wide-screen check if the upper range is unbounded:

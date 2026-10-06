@@ -19,7 +19,14 @@ The extractor owns source selection and production-asset readiness. The implemen
 
 ## Browser acceptance
 
-- At the contract's DPR checks, record the actual resource (`currentSrc` for images, resolved resource for CSS backgrounds), its file dimensions/hash, CSS paint dimensions, crop/fit, observed DPR, and effective density. Verify correspondence to the selected package asset. For optimized/generated derivatives, record the mapping to the selected original and verify derivative dimensions and quality; a different hash alone is not an error.
+- At the contract's DPR checks, run `asset-density.mjs` ([tools](../tools/README.md)) and attach its output; if it cannot run, record the same fields manually. Record the actual resource (`currentSrc` for images, resolved resource for CSS backgrounds), its file dimensions/hash, CSS paint dimensions, crop/fit, observed DPR, and effective density. Verify correspondence to the selected package asset. For optimized/generated derivatives, record the mapping to the selected original and verify derivative dimensions and quality; a different hash alone is not an error.
 - Verify responsive resource selection at DPR 2 and the largest paint size for each production raster role and distinct responsive composition/source. Add higher-DPR checks when required. Vector-only screens may mark raster density checks not applicable with evidence; inspect vector rendering at DPR 2.
-- Save DPR 2 (or higher required DPR) screenshots at device-pixel resolution and inspect asset crops at **1:1 physical pixels**, checking detail, blur, compression artifacts, crop, alpha, and effects against the selected source/composition. A reduced full-page preview or DPR 1 capture is insufficient. Record both dimensional and visual results.
+- Save DPR 2 (or higher required DPR) screenshots at device-pixel resolution, cut them with `crop-tiles.mjs`, and inspect asset crops at **1:1 physical pixels**, checking detail, blur, compression artifacts, crop, alpha, and effects against the selected source/composition. A reduced full-page preview or DPR 1 capture is insufficient. Record both dimensional and visual results.
 - Check assets from the initial review and repeat affected checks after asset, source-selection, sizing, cropping, optimization, or relevant shared changes. Only current passing evidence permits `local-pass`/`pass`. Route source/export failures to the extractor; fix implementation/resource-selection failures in code.
+
+## Fonts
+
+1. Record every font family, weight, and style used in the references, with its source (local file, project package, or web font) and license note.
+2. An unavailable font blocks package `ready` unless the user accepted a fallback in advance (recorded in [design context](../context/design.md)).
+3. An accepted fallback must be metric-compatible (similar x-height, advance widths, and line height). Differences caused only by it are `harmless` ([severity](../workflows/visual-validation.md)); other font differences keep their severity.
+4. Confirm in the browser that the intended font loaded (`document.fonts`), not the fallback.

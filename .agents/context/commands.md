@@ -13,6 +13,7 @@ Use status `not checked / passed / failed / unavailable / not applicable`. Recor
 | Typecheck | | | | |
 | Tests | | | | |
 | Playwright / browser checks | | | | |
+| Accessibility (axe, e.g. `@axe-core/playwright`) | | | | |
 
 - Local application URL:
 - Test route and fixture setup:

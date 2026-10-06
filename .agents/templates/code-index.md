@@ -3,9 +3,9 @@
 - Repository revision, working-tree state, and indexed date:
 - Search scope and excluded areas:
 
-| Kind | Path / symbol | Purpose / API | Reuse or responsive notes | Related tests / consumers |
-| --- | --- | --- | --- | --- |
-| Route / component / token / style / asset | | | | |
+| Kind | Path / symbol | Purpose / API | Reuse or responsive notes | Code Connect match (Figma node) | Related tests / consumers |
+| --- | --- | --- | --- | --- | --- |
+| Route / component / token / style / asset | | | | | |
 
 - Shared files and assigned owners:
 - Missing primitives or unresolved mappings:

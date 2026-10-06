@@ -1,2 +1,3 @@
-# Local review reports
-/.agents/artifacts/reviews/
+# Local validation captures (round screenshots, diffs, manifests)
+/.agents/artifacts/**/validation/
+/.agents/examples/**/validation/

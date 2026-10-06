@@ -10,6 +10,6 @@
 - State/data handling and assets:
 - Accessibility and responsive conventions:
 - Test tools and available browser integrations:
-- Commands: link to repository-root `.agents/context/commands.md`; note required checks, verification results, and setup blockers:
+- Commands, required checks, verification results (status and evidence per command), and setup blockers; the command list itself is user input in `.agents/context/commands.md`:
 - Code index path:
 - Constraints, conflicts, assumptions, and gaps:

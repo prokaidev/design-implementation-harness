@@ -1,12 +1,14 @@
 # Visual review
 
+Filled example: [example review](../examples/screens/example/visual-review.md).
+
 - Screen ID, route, and implementation revision/working-tree state:
 - Design source revision (or `unavailable`), extraction date, and contract path:
 - Runner, browser, environment, and fixture/state setup:
-- Local planning budget (default 6), consumed rounds, extensions, and remaining allowance:
-- Integration planning budget (default 2 when required), consumed rounds, extensions, and remaining allowance:
+- Local: base 6, consumed rounds, extensions used (max 2), ceiling 10:
+- Integration: base 2 when required, consumed rounds, extensions used (max 2), ceiling 6:
 - Integration required / not applicable and reason; coordinator:
-- Status: pass / local-pass / incomplete / blocked
+- Status: pass / local-pass / incomplete / blocked ([definitions and ceilings](../workflows/visual-validation.md))
 
 ## Round provenance
 
@@ -14,28 +16,31 @@
 | --- | --- | --- | --- | --- | --- |
 | | | | | | |
 
-Use snapshots and manifests defined in repository-root `.agents/workflows/visual-validation.md`. Each evidence row refers to one of these rounds.
+Paste or link the `round-manifest.mjs` output per round ([workflow](../workflows/visual-validation.md)). Each evidence row refers to one of these rounds.
 
 ## Progress and extensions
 
 - Local round 4 assessment: progress, remaining causes, and acceptance plan:
-- Stalled or recurring issues across two rounds; changed diagnostic approach and findings:
+- Stalls (two rounds without fewer blockers + majors; each counts as one extension), new diagnosis and findings:
 
 | Extension after round / phase | Diagnosed remaining causes | Planned fixes / owner | Affected checks / expected improvement | Added rounds |
 | --- | --- | --- | --- | --- |
 | | | | | 2 |
 
+- Ceiling escalation (status `incomplete`): remaining differences with severity, causes, decision needed from the user, owners:
 - Setup/capture failures (not review rounds), causes, recovery, and any missing checks:
 
 ## Evidence
 
-| Round | Viewport / scale / bounds | State | Reference path or contract assertion | Capture / diff path | Finding / severity | Result |
+| Round | Viewport / scale / bounds | State | Reference path or contract assertion | Capture / diff path | Finding | Severity (blocker / major / minor / harmless) | Result |
 | --- | --- | --- | --- | --- | --- | --- |
-| | | | | | | |
+| | | | | | | | |
+
+Severity scale: [Severity](../workflows/visual-validation.md#severity). Unfixed minors need a justification; list harmless items individually.
 
 ## Outcome
 
-- Asset checks: actual loaded resources/hashes or derivative mappings, file pixel dimensions, CSS paint sizes/fit/crop, observed DPR, effective density, and device-pixel capture/crop paths with 1:1 sharpness results:
+- Asset checks: `asset-density.mjs` output (or the same fields manually), `crop-tiles.mjs` tile paths, and 1:1 sharpness results:
 - Diagnosed causes and fixes:
 - Behavior/accessibility checks and results:
 - Project commands and results:

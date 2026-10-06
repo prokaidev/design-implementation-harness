@@ -6,7 +6,7 @@
 
 | Screen ID | Implementation set ID | Route or unknown | Variant / state | Source node / link | Width × height | Local package | Status / gaps |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| | | | Desktop / tablet / mobile | | | | indexed / extracting / ready / stale |
+| | | | Desktop / tablet / mobile | | | | see [status table](../rules/artifacts.md) |
 
 ## Implementation selection and duplicates
 
