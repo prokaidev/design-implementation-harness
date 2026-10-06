@@ -3,7 +3,8 @@
 //
 //   node axe.mjs --contract <responsive-contract.md> --url <base-url> --out <validation/round-N> [--widths 1440,768,390]
 //
-// Default widths: the reference widths in the matrix (first, middle, last of the sorted list). Exit 1 on violations.
+// Default widths: widest, middle, and narrowest of the matrix widths (not necessarily the reference widths;
+// pass --widths with the reference widths when they matter). Exit 1 on violations.
 import { chromium } from 'playwright';
 import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';

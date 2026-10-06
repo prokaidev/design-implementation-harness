@@ -93,4 +93,5 @@ await browser.close();
 writeJson(join(out, 'capture.json'), report);
 console.log(`captured ${files.length} files → ${out}/capture.json`);
 for (const p of problems) console.log(`  ! ${p.tag}: ${p.issue}`);
-process.exit(files.length ? 0 : 1);
+// Overflow, missing sections, and failed captures are failures: exit 1 so they are not missed.
+process.exit(files.length && !problems.length ? 0 : 1);

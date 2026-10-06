@@ -69,7 +69,7 @@ Number rounds consecutively per screen and label each local or integrated. Track
 3. Stop early when acceptance passes. After local round 4, record progress, remaining causes, and the plan.
 4. Exhausting the base budget does not stop the work; exhausting the ceiling does.
 5. An extension is granted at a budget boundary only if the remaining differences have diagnosed, actionable causes. Record causes, planned fixes, affected checks, expected improvement, and owner first. No user approval is needed within the ceiling.
-6. A **stall** is two consecutive rounds that do not reduce the count of blockers plus majors, or that reintroduce the same issue. A stall counts as one of the two extensions, even if base budget remains. After a stall, record a new diagnosis before the next round: computed styles, dimensions, font loading, shared dependencies, package sufficiency. Without a new diagnosis the phase is not extended.
+6. A **stall** is two consecutive rounds that do not reduce the count of blockers plus majors, or that reintroduce the same issue. A stall uses up one of the two extensions without adding rounds: the phase ceiling drops by 2 (local 10 → 8), even if base budget remains. After a stall, record a new diagnosis before the next round: computed styles, dimensions, font loading, shared dependencies, package sufficiency. Without a new diagnosis the phase is not extended.
 7. At the ceiling, set `incomplete` with an escalation (below). Continue only after the user approves explicit additional rounds.
 8. Record external blockers (tools, source information, decisions) as `blocked`.
 

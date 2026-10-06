@@ -11,7 +11,7 @@ Project inputs. Defaults below apply unless the project overrides them; record u
 
 ## Validation settings
 
-Read by [responsive rules](../rules/responsive-design.md), [visual validation](../workflows/visual-validation.md), and the [capture tool](../tools/README.md).
+Read by [responsive rules](../rules/responsive-design.md) and [visual validation](../workflows/visual-validation.md). The extractor copies widths, themes, stress states, and target DPR into the contract's `json matrix`; the [tools](../tools/README.md) read only that matrix.
 
 - Intermediate widths (CSS px): `1440, 1200, 1024, 768, 600, 390, 375, 320`
 - Severity pixel threshold: `4` (shift above it is major; 1 to it is minor)

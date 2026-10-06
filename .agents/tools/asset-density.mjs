@@ -34,11 +34,24 @@ for (const check of matrix.assetChecks) {
     const probe = await loc.evaluate((el) => {
       const cs = getComputedStyle(el);
       const r = el.getBoundingClientRect();
-      const bg = cs.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      // image-set(): pick the candidate the browser uses at this DPR (smallest density ≥ DPR, else the largest),
+      // not the first url() in the list.
+      const pickBackground = (v) => {
+        const set = v.match(/image-set\((.*)\)/);
+        if (set) {
+          const cands = [...set[1].matchAll(/url\(["']?(.*?)["']?\)(?:\s+type\([^)]*\))?(?:\s+([\d.]+)(?:dppx|x))?/g)]
+            .map((m) => ({ url: m[1], density: m[2] ? Number(m[2]) : 1 }))
+            .sort((a, b) => a.density - b.density);
+          if (cands.length) return { url: (cands.find((c) => c.density >= devicePixelRatio) ?? cands[cands.length - 1]).url, imageSet: true };
+        }
+        const m = v.match(/url\(["']?(.*?)["']?\)/);
+        return m ? { url: m[1], imageSet: false } : null;
+      };
+      const bg = pickBackground(cs.backgroundImage);
       const isImg = el.tagName === 'IMG';
       return {
-        kind: isImg ? 'img' : bg ? 'background' : 'none',
-        resource: isImg ? el.currentSrc : bg ? new URL(bg[1], document.baseURI).href : null,
+        kind: isImg ? 'img' : bg ? (bg.imageSet ? 'background-image-set' : 'background') : 'none',
+        resource: isImg ? el.currentSrc : bg ? new URL(bg.url, document.baseURI).href : null,
         naturalWidth: isImg ? el.naturalWidth : null, naturalHeight: isImg ? el.naturalHeight : null,
         rect: { width: r.width, height: r.height },
         fit: isImg ? cs.objectFit : cs.backgroundSize,
@@ -87,7 +100,7 @@ for (const check of matrix.assetChecks) {
       row.paintCss = { width: +paintW.toFixed(2), height: +paintH.toFixed(2) };
       row.requiredPixels = { width: Math.ceil(paintW * dpr), height: Math.ceil(paintH * dpr) };
       row.effectiveDensity = +Math.min(size.width / paintW, size.height / paintH).toFixed(3);
-      row.approximate = probe.kind === 'background' && !/cover|contain/.test(fit);
+      row.approximate = probe.kind.startsWith('background') && !/cover|contain/.test(fit);
       const ok = size.width >= row.requiredPixels.width && size.height >= row.requiredPixels.height;
       row.verdict = ok ? 'pass' : 'fail';
       if (!ok) row.reason = `file ${size.width}×${size.height} < required ${row.requiredPixels.width}×${row.requiredPixels.height}`;

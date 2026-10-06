@@ -22,7 +22,7 @@ Paste or link the `round-manifest.mjs` output per round ([workflow](../workflows
 ## Progress and extensions
 
 - Local round 4 assessment: progress, remaining causes, and acceptance plan:
-- Stalls (two rounds without fewer blockers + majors; each counts as one extension), new diagnosis and findings:
+- Stalls (two rounds without fewer blockers + majors; each uses up one extension and lowers the ceiling by 2), new diagnosis and findings:
 
 | Extension after round / phase | Diagnosed remaining causes | Planned fixes / owner | Affected checks / expected improvement | Added rounds |
 | --- | --- | --- | --- | --- |
@@ -34,7 +34,7 @@ Paste or link the `round-manifest.mjs` output per round ([workflow](../workflows
 ## Evidence
 
 | Round | Viewport / scale / bounds | State | Reference path or contract assertion | Capture / diff path | Finding | Severity (blocker / major / minor / harmless) | Result |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | | | | | | | | |
 
 Severity scale: [Severity](../workflows/visual-validation.md#severity). Unfixed minors need a justification; list harmless items individually.
