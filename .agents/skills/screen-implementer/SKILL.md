@@ -12,7 +12,7 @@ Follow [responsive rules](../../rules/responsive-design.md), [asset quality rule
 
 ## Steps
 
-1. Check package readiness, provenance against the assigned design revision and current code, and verified startup/capture commands.
+1. Check package readiness (`ready`, or `ready-with-assumptions` with every assumption listed in the review), provenance against the assigned design revision and current code, and verified startup/capture commands.
 2. Return design gaps to [design-extractor](../design-extractor/SKILL.md) and product/API questions to the coordinator or user. Recheck readiness after recovery; preserve round history and budgets.
 3. Implement all responsive variants and specified behavior with the indexed components and tokens, including Code Connect matches from the spec. Never paste reference code from the spec as is.
 4. Use the selected production assets. Run `asset-density.mjs` and `crop-tiles.mjs` at DPR 2 (or higher required) and inspect device-pixel crops. Recheck if paint sizes exceed the package bounds.
@@ -20,4 +20,4 @@ Follow [responsive rules](../../rules/responsive-design.md), [asset quality rule
 6. Route shared edits through their owner; record required global token changes.
 7. Run required project checks, action/result assertions, and [visual validation](../../workflows/visual-validation.md).
 8. Follow the workflow's budgets, severity scale, stall rule, and ceiling. At the ceiling stop with `incomplete` and the escalation record; do not continue without user approval.
-9. Return changed files, code-index updates, and the review with a status from the workflow. Parallel workers hand off as `local-pass` after local acceptance; single-agent work without a separate integration step can finish as `pass`. Record concrete blockers or interrupted work with the workflow's other statuses.
+9. Return changed files, code-index updates, and the review with a status from the workflow. While assumptions are open, the status is at most `local-pass`. Parallel workers hand off as `local-pass` after local acceptance; single-agent work without a separate integration step can finish as `pass`. Record concrete blockers or interrupted work with the workflow's other statuses.

@@ -53,7 +53,7 @@ Build the matrix using repository-root `.agents/rules/responsive-design.md`. The
 
 ## Decisions
 
-- Missing variants and bounded assumptions:
+- Missing variants and bounded assumptions (mirror the spec's Assumptions table):
 - Blocking questions for the extractor:
 - Readiness evidence:
 

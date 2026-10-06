@@ -2,7 +2,7 @@
 // Capture the Responsive Contract matrix: widths × states × themes × DPR, plus per-section screenshots.
 //
 //   node capture.mjs --contract <responsive-contract.md> --url <base-url> --out <validation/round-N>
-//        [--widths 1440,390] [--breakpoints 768,1024] [--states a,b] [--sections] [--no-full-page]
+//        [--widths 1440,390] [--breakpoints 768,1024] [--states a,b] [--sections] [--no-full-page] [--jobs 4]
 //
 // --widths       capture only these widths (intermediate rounds: affected widths)
 // --breakpoints  add b-1, b, b+1 for each value (intermediate rounds: all breakpoints)
@@ -32,7 +32,10 @@ const browser = await chromium.launch();
 const files = [];
 const problems = [];
 
-for (const theme of matrix.themes) for (const dpr of dprs) for (const state of states) for (const width of widths) {
+const jobs = [];
+for (const theme of matrix.themes) for (const dpr of dprs) for (const state of states) for (const width of widths) jobs.push({ theme, dpr, state, width });
+
+async function run({ theme, dpr, state, width }) {
   const ctx = await browser.newContext({
     viewport: { width, height: matrix.height },
     deviceScaleFactor: dpr,
@@ -61,12 +64,12 @@ for (const theme of matrix.themes) for (const dpr of dprs) for (const state of s
     }
     if (args.sections) {
       ensureDir(join(out, 'sections'));
-      for (const sec of matrix.sections) {
+      for (const sec of matrix.sections.filter((x) => !state.sections || state.sections.includes(x.name))) {
         const loc = page.locator(sec.selector).first();
         if (!(await loc.count())) { problems.push({ tag, issue: `section "${sec.name}" not found: ${sec.selector}` }); continue; }
         const box = await loc.boundingBox();
         const path = join(out, 'sections', `${slug(sec.name)}-${tag}.png`);
-        await loc.screenshot({ path });
+        await loc.screenshot({ path, timeout: 5000 });
         files.push({ kind: 'section', section: sec.name, path, width, state: state.name, theme, dpr, bounds: box });
       }
     }
@@ -76,6 +79,14 @@ for (const theme of matrix.themes) for (const dpr of dprs) for (const state of s
     await ctx.close();
   }
 }
+
+// Limited concurrency: contexts are independent, so run several at once (--jobs, default 4).
+const concurrency = Number(args.jobs || 4);
+let next = 0;
+await Promise.all(Array.from({ length: concurrency }, async () => {
+  while (next < jobs.length) await run(jobs[next++]);
+}));
+files.sort((x, y) => x.path.localeCompare(y.path));
 
 const report = { url, route: matrix.route || '/', browser: `chromium ${browser.version()}`, date: new Date().toISOString(), widths, files, problems };
 await browser.close();

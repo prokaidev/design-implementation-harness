@@ -9,6 +9,15 @@ Used by the extractor (the only role with Figma access besides the indexer). Acc
 3. Tokens: `get_variable_defs` for the node, before copying any raw value.
 4. Reuse: `get_code_connect_map` for the node's components.
 
+## Truncated responses
+
+Large frames can make `get_metadata` / `get_design_context` fail with a JSON parse error (the response is cut off). Retrying does not help. Observed in the trial: mobile frame of 7645 px height failed at ~23k characters.
+
+1. Do not guess child IDs: IDs of copied frames are not contiguous.
+2. Ask the user for per-section node links (copy link to selection), or request a selection-based call in the Figma desktop app.
+3. Screenshots (`get_screenshot`) work on any node and are enough to find a section's size, but not to extract properties or assets.
+4. Record the failure and the missing section links as an extractor-owned blocker; the package stays `draft`.
+
 ## Rules
 
 1. Code from `get_design_context` (React + Tailwind) is a reference only. Re-express it in the project's stack, components, and tokens; do not paste it.

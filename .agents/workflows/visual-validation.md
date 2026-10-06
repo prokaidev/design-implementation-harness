@@ -14,6 +14,8 @@ Run the [tools](../tools/README.md) and attach their output to the review. If a 
 | Capture matrix and section crops | `capture.mjs` |
 | Asset density and actual resource | `asset-density.mjs` |
 | 1:1 asset tiles at DPR 2 | `crop-tiles.mjs` |
+| Diff against the reference, per section | `compare.mjs` |
+| Accessibility | `axe.mjs` |
 | Round snapshot and package manifest | `round-manifest.mjs` |
 
 ## Capture setup
@@ -47,6 +49,8 @@ This is the only definition of severity. Pixel thresholds come from [constraints
 
 - A **meaningful difference** is a blocker or a major.
 - Each finding in the review carries one of these levels.
+- A design defect (for example, text clipped in the reference) is resolved by a decision recorded in the screen spec; the implementation then follows the decision and the finding counts as resolved.
+- `axe` violations of impact critical or serious are majors. If the cause is a design value (color, size), the code is not the owner: record it as a design finding with the decision needed from the user. Until that decision exists, the status is `blocked`, not `pass`.
 - Every minor is either fixed or accepted with a written justification. Harmless items are listed individually with a reason.
 
 ## Rounds and budgets
@@ -114,8 +118,8 @@ Hand off a locally accepted screen as `local-pass`, with remaining integration w
 
 ## Status
 
-- `pass`: acceptance is met, including integration when required.
-- `local-pass`: local acceptance is met; required integration validation is pending.
+- `pass`: acceptance is met, including integration when required, and no package assumptions are open.
+- `local-pass`: local acceptance is met; required integration validation is pending, or package assumptions are still open (list them in the review). Closing the assumptions and re-verifying the affected checks upgrades it to `pass`.
 - `incomplete`: unfinished work, set when the ceiling is reached or work is interrupted. Requires the escalation record.
 - `blocked`: required tools, source information, decisions, or dependencies prevent progress; record the concrete blocker and owner. Fixable capture failures must be recovered within the task.
 
@@ -127,3 +131,4 @@ Hand off a locally accepted screen as `local-pass`, with remaining integration w
 4. Asset density and sharpness checks pass under the [asset rules](../rules/assets.md); missing asset evidence prevents `local-pass` and `pass`.
 5. Final local verification covers the full matrix.
 6. Overall `pass` also requires affected shared changes to be checked after integration when applicable.
+7. Open package assumptions cap the status at `local-pass`; after the source arrives, re-verify the checks the assumption affected.

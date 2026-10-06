@@ -35,4 +35,15 @@ Follow the [Figma boundary](../../rules/figma.md), [figma-to-code rules](../../r
 5. A token mapping table and Code Connect column filled.
 6. No blocking design or required-behavior gaps.
 
-Otherwise set `draft` or `stale` with blockers and owners. On recovery, refresh affected artifacts, recheck readiness, and return the package for implementation, preserving round history and phase budgets. Browser sharpness acceptance belongs to the implementer.
+Otherwise set `draft` or `stale` with blockers and owners, or `ready-with-assumptions` when the next section applies. On recovery, refresh affected artifacts, recheck readiness, and return the package for implementation, preserving round history and phase budgets. Browser sharpness acceptance belongs to the implementer.
+
+## Ready with assumptions
+
+Use `ready-with-assumptions` instead of `draft` only when every condition holds:
+
+1. The gap is bounded: one variant region, one state, or one value. Other variants and all required behavior are complete.
+2. Each assumption is recorded in the spec's **Assumptions** table with its basis (observed evidence it was derived from), what it affects, the risk if wrong, and how it will be verified.
+3. The extractor has asked the user or the design owner for the missing source (node link or decision) and recorded the request.
+4. The assumption is not a product or API decision, a missing asset, an unavailable font, or an unresolved selection between alternative designs. Those stay `draft` or `blocked`.
+
+When the source arrives, replace each assumption with observed values, update the contract, and set `ready`. Assumptions confirmed unchanged are closed in the table, not deleted.

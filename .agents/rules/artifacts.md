@@ -23,6 +23,7 @@ This is the only status table for indexes and packages.
 
 ```text
 indexed → extracting → draft → ready
+                         ↘ ready-with-assumptions → ready (assumptions confirmed)
                          ↘ stale (source changed after ready/draft)
                          ↘ blocked (recorded blocker and owner)
 ```
@@ -33,6 +34,7 @@ indexed → extracting → draft → ready
 | extracting | Extraction in progress | extractor |
 | draft | Package incomplete; blockers recorded | extractor |
 | ready | Readiness criteria met ([extractor](../skills/design-extractor/SKILL.md)) | extractor |
+| ready-with-assumptions | Ready except for bounded, recorded assumptions about a missing design detail ([rules](../skills/design-extractor/SKILL.md#ready-with-assumptions)); coding may proceed | extractor |
 | stale | Source or selection changed; re-extract | indexer / extractor |
 | blocked | Cannot proceed; blocker and owner recorded | any owner |
 

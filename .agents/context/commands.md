@@ -13,7 +13,7 @@ Use status `not checked / passed / failed / unavailable / not applicable`. Recor
 | Typecheck | | | | |
 | Tests | | | | |
 | Playwright / browser checks | | | | |
-| Accessibility (axe, e.g. `@axe-core/playwright`) | | | | |
+| Accessibility (axe) | `node .agents/tools/axe.mjs --contract ... --url ... --out ...` | repo root | | |
 
 - Local application URL:
 - Test route and fixture setup:

@@ -12,7 +12,7 @@ Asset and font requirements: [asset quality rules](.agents/rules/assets.md). Fig
 
 ## Use
 
-1. Copy `.agents/` into the target repository and merge [AGENTS.md](AGENTS.md) with its existing instructions.
+1. Copy `.agents/` into the target repository and merge [AGENTS.md](AGENTS.md) with its existing instructions. Add `/.agents/artifacts/**/validation/` and `/.agents/tools/node_modules/` to the target's `.gitignore`.
 2. Fill `.agents/context/` with known project inputs; analysis supplies codebase facts.
 3. Run the skills in order, selecting the screens to extract and implement.
 
@@ -56,7 +56,7 @@ AGENTS.md                # Entry points and coordination
 └── templates/           # Formats for generated artifacts
 ```
 
-Generated output goes to `.agents/artifacts/`; see the [artifact layout and statuses](.agents/rules/artifacts.md). `.agents/artifacts/**/validation/` is git-ignored (round captures); the other artifacts are committed. A filled example: [example screen](.agents/examples/screens/example/).
+Generated output goes to `.agents/artifacts/`; see the [artifact layout and statuses](.agents/rules/artifacts.md). `.agents/artifacts/**/validation/` is git-ignored (round captures); the other artifacts are committed. A filled example: [example screen](.agents/examples/screens/example/); a real trial with findings: [trial log](.agents/examples/trial-frozen-pets.md).
 
 ## Validation and parallel work
 

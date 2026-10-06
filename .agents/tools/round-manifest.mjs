@@ -2,6 +2,7 @@
 // Record the provenance of a validation round.
 //
 //   node round-manifest.mjs --round <n> --out <validation/round-N> --package <screen dir> [--prev <previous round manifest.json>]
+//   (--prev defaults to the sibling round-<n-1>/manifest.json)
 //
 // Writes <out>/manifest.json, <out>/code.patch (git diff HEAD) and <out>/untracked/ (copies of untracked source files).
 // "changedSincePrev" compares the working-tree changes (and commits) with the previous round's manifest.
@@ -13,7 +14,13 @@ import { parseArgs, need, ensureDir, writeJson, sha256, fail } from './lib.mjs';
 const args = parseArgs(process.argv.slice(2));
 need(args, 'round', 'out', 'package');
 // Resolve user paths before moving to the repository root.
-const outAbs = resolve(args.out), pkgAbs = resolve(args.package), prevAbs = args.prev && resolve(args.prev);
+const outAbs = resolve(args.out), pkgAbs = resolve(args.package);
+// Previous manifest: --prev, else the sibling round-<n-1>/manifest.json. A missing one is a warning, not an error.
+let prevAbs = args.prev ? resolve(args.prev) : resolve(outAbs, '..', `round-${Number(args.round) - 1}`, 'manifest.json');
+if (!existsSync(prevAbs)) {
+  if (args.prev || Number(args.round) > 1) console.warn(`warning: no previous manifest at ${prevAbs}; "changedSincePrev" omitted (run this tool in every round)`);
+  prevAbs = null;
+}
 const git = (...a) => execFileSync('git', a, { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
 let root;
 try { root = git('rev-parse', '--show-toplevel').trim(); } catch { fail('not inside a git repository'); }
@@ -66,7 +73,7 @@ if (prevAbs) {
   for (const p of Object.keys(prev.workingTree ?? {})) if (!(p in working)) changed.add(p);
   for (const [p, h] of Object.entries(pkg)) if (prev.package?.[p] !== h) changed.add(p);
   for (const p of Object.keys(prev.package ?? {})) if (!(p in pkg)) changed.add(p);
-  changedSincePrev = [...changed].sort();
+  changedSincePrev = [...changed].filter((p) => !isGenerated(p)).sort();
 }
 
 const manifest = {

@@ -105,7 +105,7 @@ await browser.close();
 const verdict = results.every((r) => r.verdict === 'pass' || r.verdict === 'n/a-vector') ? 'pass' : 'fail';
 writeJson(join(out, 'asset-density.json'), { url, date: new Date().toISOString(), verdict, results });
 for (const r of results) {
-  console.log(`${r.verdict.padEnd(10)} ${r.role}: ` + (r.file ? `file ${r.file.width ?? '?'}×${r.file.height ?? '?'}, paint ${r.paintCss?.width ?? '?'}×${r.paintCss?.height ?? '?'} css, density ${r.effectiveDensity ?? '-'}× (need ≥${r.targetDpr})` : '') + (r.reason ? ` — ${r.reason}` : ''));
+  console.log(`${r.verdict.padEnd(10)} ${r.role}: ` + (r.file ? `file ${r.file.width ?? '?'}×${r.file.height ?? '?'}, paint ${r.paintCss?.width ?? r.cssBox?.width}×${r.paintCss?.height ?? r.cssBox?.height} css, density ${r.effectiveDensity ?? '-'}× (need ≥${r.targetDpr})` : '') + (r.reason ? ` — ${r.reason}` : ''));
 }
 console.log(`overall: ${verdict} → ${join(out, 'asset-density.json')}`);
 process.exit(verdict === 'pass' ? 0 : 1);

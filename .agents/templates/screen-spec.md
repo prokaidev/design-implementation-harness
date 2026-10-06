@@ -5,7 +5,7 @@ Filled example: [example spec](../examples/screens/example/screen-spec.md).
 - Screen ID, route, and purpose:
 - Selected implementation set ID and design-index selection/decision reference:
 - Source revision (or `unavailable`) and extraction date:
-- Status: see [status table](../rules/artifacts.md)
+- Status: see [status table](../rules/artifacts.md) (`ready-with-assumptions` requires the table below)
 - Project profile, code index, and Responsive Contract paths:
 
 ## References
@@ -48,6 +48,14 @@ Apply repository-root `.agents/rules/assets.md`. Record detail, crop, alpha, and
 - Missing responsive variants or state references:
 - Observed facts vs inferred decisions:
 - Blocking gaps, required decisions, and owners (extractor for design; coordinator/user for product/API behavior):
+
+## Assumptions
+
+Only for `ready-with-assumptions` ([rules](../skills/design-extractor/SKILL.md#ready-with-assumptions)). Empty otherwise.
+
+| Assumption | Basis (observed evidence) | Affects (variant / checks) | Risk if wrong | Source requested from / verification | State: open / confirmed / replaced |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | |
 
 ## Behavior and acceptance
 

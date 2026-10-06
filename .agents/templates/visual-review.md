@@ -8,6 +8,7 @@ Filled example: [example review](../examples/screens/example/visual-review.md).
 - Local: base 6, consumed rounds, extensions used (max 2), ceiling 10:
 - Integration: base 2 when required, consumed rounds, extensions used (max 2), ceiling 6:
 - Integration required / not applicable and reason; coordinator:
+- Open package assumptions (cap the status at `local-pass`) and their verification checks:
 - Status: pass / local-pass / incomplete / blocked ([definitions and ceilings](../workflows/visual-validation.md))
 
 ## Round provenance
